@@ -1,0 +1,40 @@
+<h2> Add Photovoltaic Form </h2>
+
+<form {{action 'savePV' on='submit'}}>
+	<p>Peak Power :</p>
+	{{input type="text" value=power}}
+
+	<p>Orientation:</p>
+	<select onchange={{action (mut orientation) value="target.value"}}>
+		<option style="display:none">Select</option>
+
+		{{#each orientations as |orientationChoice|}}
+			<option value={{orientationChoice}} selected={{eq orientation orientationChoice}}>{{orientationChoice}}</option>
+		{{/each}}
+
+	</select>
+
+	<p>Elevation:</p>
+	<select onchange={{action (mut elevation) value="target.value"}}>
+		<option style="display:none">Select</option>
+
+		{{#each elevations as |elevationChoice|}}
+			<option value={{elevationChoice}} selected={{eq elevation elevationChoice}}>{{elevationChoice}}</option>
+		{{/each}}
+		
+	</select>
+
+	<p>Overshading</p>
+	<select onchange={{action (mut overshading) value="target.value"}}>
+		<option style="display:none">Select</option>
+
+		{{#each overshadings as |overshadingChoice|}}
+			<option value={{overshadingChoice}} selected={{eq overshading overshadingChoice}}>{{overshadingChoice}}</option>
+		{{/each}}
+		
+	</select>
+
+	<p><button>Add Photovoltaic</button></p>
+</form>
+
+{{photovoltaic-table class="table" photovoltaics=model delete='delete'}}
